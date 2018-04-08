@@ -20,6 +20,7 @@ set_compilation_props("${WIN32_SOURCES}" GLUG_OS_WIN32)
 if (${GLUG_OS_WIN32})
     set_compilation_props("${MAIN_SOURCES}" "")
 else()
+    set(TRUE "true")
     set_compilation_props("${MAIN_SOURCES}" TRUE)
 endif()
 

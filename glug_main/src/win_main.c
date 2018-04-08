@@ -1,5 +1,5 @@
-#include <windows.h>
 #include <glug/main.h>
+#include <windows.h>
 
 int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show_flag)
 {
