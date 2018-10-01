@@ -1,23 +1,21 @@
-set(SRC
-    "main.cpp"
-)
+include(${PROJECT_SOURCE_DIR}/cmake/macros/add_example.cmake)
 
-set(SRC_C
-    "main.c"
-)
-
-set(PLATFORM "")
 if (${GLUG_OS_WIN32})
-    set(PLATFORM WIN32)
+    set(USE_WINMAIN USE_WINMAIN)
 endif()
 
-add_executable(main_test ${PLATFORM} ${SRC})
-add_executable(main_test_c ${PLATFORM} ${SRC_C})
-
-set(MAIN_LIB glug_main)
 if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    set(MAIN_LIB -Wl,--whole-archive ${MAIN_LIB} -Wl,--no-whole-archive)
+    set(USE_WHOLE_ARCHIVE USE_WHOLE_ARCHIVE)
 endif()
 
-target_link_libraries(main_test ${MAIN_LIB})
-target_link_libraries(main_test_c ${MAIN_LIB})
+set(GLUG_TARGET_NAME ${CMAKE_PROJECT_NAME}_test)
+
+add_example(
+    ${USE_WINMAIN} ${USE_WHOLE_ARCHIVE}
+    TARGET_NAME ${GLUG_TARGET_NAME}
+)
+
+install(
+    TARGETS ${GLUG_TARGET_NAME}
+    DESTINATION ${GLUG_DIST_XMPL_DIR}
+)

@@ -1,11 +1,7 @@
-project(glug_main)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
+cmake_policy(SET CMP0054 NEW)
 
-include(cmake/os.cmake)
+include(cmake/macros/os.cmake)
+include(cmake/macros/project_root.cmake)
 
-set(GLUG_MAIN_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/glug_main)
-set(MAIN_INCLUDE_ROOT ${GLUG_MAIN_ROOT}/include)
-include_directories(${MAIN_INCLUDE_ROOT})
-
-add_subdirectory(glug_main/src)
-add_subdirectory(example)
+create_root_project(glug_main)
