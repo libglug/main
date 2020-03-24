@@ -1,21 +1,32 @@
-include(${PROJECT_SOURCE_DIR}/cmake/macros/add_example.cmake)
+project(example)
+include(cmake/add_example.cmake)
 
-if (${GLUG_OS_WIN32})
-    set(USE_WINMAIN USE_WINMAIN)
-endif()
+set(LIB glug_main)
+find_package(${LIB} REQUIRED)
+set(GLUG_TARGET_NAME ${LIB}_test)
 
-if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    set(USE_WHOLE_ARCHIVE USE_WHOLE_ARCHIVE)
-endif()
-
-set(GLUG_TARGET_NAME ${CMAKE_PROJECT_NAME}_test)
+set(INSTALL_PATH example)
 
 add_example(
-    ${USE_WINMAIN} ${USE_WHOLE_ARCHIVE}
-    TARGET_NAME ${GLUG_TARGET_NAME}
+    USE_WINMAIN
+    TARGET_NAME
+        ${GLUG_TARGET_NAME}
+    SRCS
+        main.c
+    LINK_LIB
+        ${LIB}
+    INSTALL_PATH
+        ${INSTALL_PATH}
 )
 
-install(
-    TARGETS ${GLUG_TARGET_NAME}
-    DESTINATION ${GLUG_DIST_XMPL_DIR}
+add_example(
+    USE_WINMAIN
+    TARGET_NAME
+        ${GLUG_TARGET_NAME}++
+    SRCS
+        main.cpp
+    LINK_LIB
+        ${LIB}
+    INSTALL_PATH
+        ${INSTALL_PATH}
 )
