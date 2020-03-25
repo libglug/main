@@ -17,11 +17,11 @@ endmacro()
 add_subdirectory(${GLUG_LIB_TARGET})
 
 # build and install examples
-if (${BUILD_XMPLS} STREQUAL "ON")
+if (${BUILD_XMPLS})
     add_subdirectory(example)
 endif()
 
-if (${BUILD_TESTS} STREQUAL "ON")
+if (${BUILD_TESTS})
     enable_testing()
     add_subdirectory(test)
 endif()
