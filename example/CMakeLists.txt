@@ -16,7 +16,7 @@ function (add_example)
     if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
             target_link_libraries(
-                ${TEST_TARGET_NAME}
+                ${XMPL_TARGET_NAME}
                 -Wl,--whole-archive ${LIB} -Wl,--no-whole-archive
             )
         endif()
