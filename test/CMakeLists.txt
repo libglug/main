@@ -14,10 +14,11 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
         target_link_libraries(
             ${TEST_TARGET_NAME}
-            mingw32
+            -Wl,--whole-archive ${TESTED_LIB} -Wl,--no-whole-archive
         )
     endif()
 endif()
+
 target_link_libraries(
     ${TEST_TARGET_NAME}
     ${TESTED_LIB}
