@@ -5,7 +5,7 @@
 
 GLUG_EXTERN_START
 
-int glug_main(int argc, char **argv);
+int glug_main(int argc, char *argv[]);
 
 GLUG_EXTERN_END
 
