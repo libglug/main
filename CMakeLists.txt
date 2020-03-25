@@ -4,6 +4,7 @@ project(glug_main_suite)
 
 set(GLUG_LIB_TARGET glug_main)
 option(BUILD_XMPLS "Build the examples?")
+option(BUILD_TESTS "Build tests?")
 
 # disable find_package in any subproject for finding this lib
 macro(find_package)
@@ -18,4 +19,9 @@ add_subdirectory(${GLUG_LIB_TARGET})
 # build and install examples
 if (${BUILD_XMPLS} STREQUAL "ON")
     add_subdirectory(example)
+endif()
+
+if (${BUILD_TESTS} STREQUAL "ON")
+    enable_testing()
+    add_subdirectory(test)
 endif()
